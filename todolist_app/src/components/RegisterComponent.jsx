@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { Button, Form, Card, Image } from 'react-bootstrap'
 import CredentialsWrapper from './wrapper/CredentialsWrapper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAt, faKey, faPersonWalkingArrowRight, faA, faZ, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faAt, faKey, faPersonWalkingArrowRight, faA, faZ } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
 import listApi from '../api/list'
 
 const RegisterComponent = () => {
-    const [error, setError] = useState('d-none');
-    const validFirstName = new RegExp('[a-z]{3,}');
-    const validlastName = new RegExp('[a-z]{3,}');
+    // const [error, setError] = useState('d-none');
+    // const validFirstName = new RegExp('[a-z]{3,}');
+    // const validlastName = new RegExp('[a-z]{3,}');
     const navigate = useNavigate();
     const [register, setRegister] = useState({
         firstName: "",
@@ -55,18 +55,11 @@ const RegisterComponent = () => {
                                     cp2='bg-transparent border-0'
                                     cp3='border-top-0 border-start-0 border-end-0 shadow-none border-dark bg-transparent'
                                     icon={faA}
-                                    lastIcon={faCheck}
-                                    cp4={error}
                                     placeholder='First Name'
                                     type='text'
                                     value={register.firstName}
                                     onChange={(event) => {
                                         // console.log(register.firstName.length);
-                                        if (!validFirstName.test(register.firstName)) {
-                                            setError('d-none');
-                                        } else {
-                                            setError('');
-                                        }
                                         setRegister({ ...register, firstName: event.target.value });
                                     }}
                                 />
@@ -117,7 +110,7 @@ const RegisterComponent = () => {
                                 <p className='fs-6 text-silver text-muted text-center'>Already have an account? <Link to='/login' className='text-warning text-decoration-none'>Sign in</Link></p>
 
                                 <div className='text-center'>
-                                    <Button className='rounded-pill p-2' variant='warning' onClick={(event) => registerApi(event)}> <FontAwesomeIcon icon={faPersonWalkingArrowRight} /> Register</Button>
+                                    <Button type='submit' className='rounded-pill p-2' variant='warning' onClick={(event) => registerApi(event)}> <FontAwesomeIcon icon={faPersonWalkingArrowRight} /> Register</Button>
                                 </div>
                             </div>
                         </Form.Group>

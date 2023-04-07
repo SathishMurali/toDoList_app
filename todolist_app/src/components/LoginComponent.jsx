@@ -79,7 +79,7 @@ const LoginComponent = () => {
                                 <p className='fs-6 text-silver text-muted text-center'>Don't have an account? <Link to='/register' className='text-warning text-decoration-none'>Sign Up</Link></p>
 
                                 <div className='text-center'>
-                                    <Button className='rounded-pill p-2' variant='warning' onClick={(event) => loginApi(event)}> <FontAwesomeIcon icon={faPersonWalkingArrowRight} /> Login</Button>
+                                    <Button type='submit' className='rounded-pill p-2' variant='warning' onClick={(event) => loginApi(event)}> <FontAwesomeIcon icon={faPersonWalkingArrowRight} /> Login</Button>
                                 </div>
                             </div>
                         </Form.Group>

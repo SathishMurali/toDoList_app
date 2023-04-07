@@ -8,7 +8,6 @@ const CredentialsWrapper = ({cp1, cp2, icon, type, placeholder, onChange, cp3, c
         <InputGroup className={cp1}>
             <InputGroup.Text className={cp2}><FontAwesomeIcon icon={icon} /></InputGroup.Text>
             <Form.Control type={type} placeholder={placeholder} onChange={onChange} className={cp3} value={value} />
-            <div className={cp4}><FontAwesomeIcon icon={lastIcon} /></div>
         </InputGroup>
     )
 }

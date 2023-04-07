@@ -26,11 +26,6 @@ const HomeComponent = () => {
     const buttonOneClose = () => setButtonOne(false);
     const buttonTwoClose = () => setButtonTwo(false);
 
-    const handleSubmit = (event, index) => {
-        console.log(index);
-        console.log(event.target.checked);
-    }
-
     useEffect(() => {
         listApi
             .get(`/toDoList/list/${userId}`)
@@ -114,7 +109,7 @@ const HomeComponent = () => {
                                 .map((list, index) => {
                                     return (
                                         <Card bg='light' className='m-3 shadow'>
-                                            <InputGroup.Checkbox className='bg-warning shadow-none border-0' onChange={(event) => handleSubmit(event, index)} />
+                                            <InputGroup.Checkbox className='bg-warning shadow-none border-0' />
                                             <p key={index} className='m-3 d-flex'>
                                                 {list.listName}
                                                 <div className='ms-auto'>
