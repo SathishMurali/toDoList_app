@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Card, Image } from 'react-bootstrap'
+import { Button, Form, Card, Image, Modal } from 'react-bootstrap'
 import CredentialsWrapper from './wrapper/CredentialsWrapper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faKey, faPersonWalkingArrowRight, faA, faZ } from '@fortawesome/free-solid-svg-icons'
@@ -7,9 +7,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import listApi from '../api/list'
 
 const RegisterComponent = () => {
-    // const [error, setError] = useState('d-none');
-    // const validFirstName = new RegExp('[a-z]{3,}');
-    // const validlastName = new RegExp('[a-z]{3,}');
+
+    const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
     const [register, setRegister] = useState({
         firstName: "",
@@ -17,6 +16,7 @@ const RegisterComponent = () => {
         userEmail: "",
         password: "",
     });
+
     const registerApi = (event) => {
         event.preventDefault();
 
@@ -30,7 +30,10 @@ const RegisterComponent = () => {
             .then((res) => {
                 if (res.data.data) {
                     console.log(res.data.data);
-                    navigate('/login')
+                    setSuccess(true);
+                    setTimeout(() => {
+                        navigate('/login')
+                    }, 2000)
                 } else if (res.data.error) {
                     console.log(res.data.error.message);
                 } else {
@@ -111,6 +114,15 @@ const RegisterComponent = () => {
 
                                 <div className='text-center'>
                                     <Button type='submit' className='rounded-pill p-2' variant='warning' onClick={(event) => registerApi(event)}> <FontAwesomeIcon icon={faPersonWalkingArrowRight} /> Register</Button>
+                                    <Modal show={success}>
+                                        <Modal.Body>
+                                            <div className='text-center'>
+                                                <Image src={require('../assets/icons/verified.gif')} className='w-50'></Image>
+                                                <h2>Account created successfully</h2>
+                                                <h6>Redirecting to Login...</h6>
+                                            </div>
+                                        </Modal.Body>
+                                    </Modal>
                                 </div>
                             </div>
                         </Form.Group>
